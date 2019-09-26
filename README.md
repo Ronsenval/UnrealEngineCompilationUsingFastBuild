@@ -26,7 +26,7 @@ Maybe more precise filtration could be applied, some ideas:
 - exclude using cl-filter.exe.sn-dbs-tool.ini.
 
 ## FastBuild version
-Don't use FastBuild 0.96 or earlier versions, since it has processes management error.
+Don't use FastBuild 0.96 or older versions, since it has processes management error.
 
 For more information see https://github.com/fastbuild/fastbuild/issues/223.
 
