@@ -2,7 +2,7 @@
 
 ## Implementation notes
 #### Currently supported platforms
-- Win64 - tested with Windows 10, Visual Studio 2019 Community, Unreal Engine 4.22.3, FastBuild v0.98.
+- Win64 - tested with Windows 10, Visual Studio 2019 Community, Unreal Engine 4.23.1, FastBuild v0.98.
 
 #### Recently supported platforms
 - Durango was fully supported using VS2015 at some point in the past, but VS2015 is not supported since 4.22;
@@ -33,9 +33,7 @@ For more information see https://github.com/fastbuild/fastbuild/issues/223.
 ## Installation steps
 1. Save copy of this file as ...\Engine\Source\Programs\UnrealBuildTool\System\FASTBuild.cs;
 2. Add it to UnrealBuildTool project;
-3. Apply fix from https://github.com/TheEmidee/UE4FastBuild:
-	VS2019 required same behaviour as for VS2017;
-4. Add FastBuild executor to ExecuteActions(...) inside ActionGraph.cs:
+3. Add FastBuild executor to ExecuteActions(...) inside ActionGraph.cs:
 ```
 ...
 // Figure out which executor to use
@@ -47,7 +45,7 @@ if (FASTBuild.IsAvailable())
 else if (BuildConfiguration.bAllowHybridExecutor && HybridExecutor.IsAvailable())
 ...
 ```
-5. Add "public" access modifier to GetVCToolPath64(...) method inside VCEnvironment.cs.
+4. Add "public" access modifier to GetVCToolPath(...) method inside VCEnvironment.cs.
 
 
 ## Original version
