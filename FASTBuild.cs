@@ -64,9 +64,7 @@
 //
 // 1. Save copy of this file as ...\Engine\Source\Programs\UnrealBuildTool\System\FASTBuild.cs;
 // 2. Add it to UnrealBuildTool project;
-// 3. Apply fix from https://github.com/TheEmidee/UE4FastBuild:
-//		VS2019 required same behaviour as for VS2017;
-// 4. Add FastBuild executor to ExecuteActions(...) inside ActionGraph.cs:
+// 3. Add FastBuild executor to ExecuteActions(...) inside ActionGraph.cs:
 //				...
 //				// Figure out which executor to use
 //				ActionExecutor Executor;
@@ -76,7 +74,7 @@
 //				}
 //				else if (BuildConfiguration.bAllowHybridExecutor && HybridExecutor.IsAvailable())
 //				...
-// 5. Add "public" access modifier to GetVCToolPath64(...) method inside VCEnvironment.cs.
+// 4. Add "public" access modifier to GetVCToolPath(...) method inside VCEnvironment.cs.
 //
 //
 // Original version:
@@ -481,7 +479,7 @@ namespace UnrealBuildTool
 				// it probably means we are building for another platform.
 				if (BuildType == FBBuildType.Windows)
 				{
-					VCEnv = VCEnvironment.Create(WindowsPlatform.GetDefaultCompiler(null), CppPlatform.Win64, null, null);
+					VCEnv = VCEnvironment.Create(WindowsPlatform.GetDefaultCompiler(null), UnrealTargetPlatform.Win64, WindowsArchitecture.x64, null, null);
 				}
 				else if (BuildType == FBBuildType.XBOne)
 				{
@@ -552,7 +550,7 @@ namespace UnrealBuildTool
 					throw new BuildException(exceptionString);
 				}
 
-				VCToolPath64 = VCEnvironment.GetVCToolPath64(WindowsPlatform.GetDefaultCompiler(null), VCEnv.ToolChainDir).ToString();
+				VCToolPath64 = VCEnvironment.GetVCToolPath(WindowsPlatform.GetDefaultCompiler(null), VCEnv.ToolChainDir, WindowsArchitecture.x64).ToString();
 
 				string debugVCToolPath64 = VCEnv.CompilerPath.Directory.ToString();
 
